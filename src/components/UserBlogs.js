@@ -5,6 +5,7 @@ import Blog from "./Blog";
 const UserBlogs = () => {
   const id = localStorage.getItem("userId");
   const [blogs, setBlogs] = useState([]);
+  const [name, setName] = useState([])
   const sendRequest = async () => {
     const res = await axios
       .get(`http://localhost:5000/api/blog/user/${id}`)
@@ -15,14 +16,13 @@ const UserBlogs = () => {
   useEffect(() => {
     sendRequest().then((data) => setBlogs(data.blogs.blogs));
   }, []);
-  console.log(blogs);
-
+  console.log(blogs, name);
   return (
     <div>
       {blogs.length !== 0 ? (
         <>
           {blogs.map((blog, index) => (
-            <Blog blog={blog} />
+            <Blog blog={blog} name={name}/>
           ))}
         </>
       ) : (

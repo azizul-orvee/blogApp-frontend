@@ -14,7 +14,7 @@ const Blogs = () => {
   useEffect(() => {
     sendRequest().then((data) => setBlogs(data.blogs));
   }, []);
-  console.log(blogs);
+
   return (
     <div>
       {blogs ? (

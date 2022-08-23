@@ -5,9 +5,9 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea } from "@mui/material";
 
-const Blog = ({blog}) => {
-  const { title, description, imageURL } = blog;
-  const user = blog?.user?.name || 'undefined'
+const Blog = ({blog, name}) => {
+  const { title, description, image } = blog;
+  const user = blog?.user?.name || 'You'
   return (
     <Card
       sx={{
@@ -25,7 +25,7 @@ const Blog = ({blog}) => {
         <CardMedia
           component="img"
           height="140"
-          image={imageURL}
+          image={image}
           alt="green iguana"
         />
         <CardContent>
