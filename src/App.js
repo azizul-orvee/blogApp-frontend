@@ -6,11 +6,18 @@ import Blogs from "./components/Blogs";
 import AddBlog from "./components/AddBlog";
 import BlogDetail from "./components/BlogDetail";
 import UserBlogs from "./components/UserBlogs";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "./store";
 
 function App() {
-  const isLoggedIn = useSelector(state=> state.isLoggedIn)
-  console.log(isLoggedIn)
+  const item = localStorage.getItem("userId");
+  const dispatch = useDispatch();
+  if (item) {
+    dispatch(authActions.login());
+  }
+  console.log(item);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  console.log(isLoggedIn);
   return (
     <React.Fragment>
       <header>

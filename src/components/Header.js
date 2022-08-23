@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { AppBar, Button, Tab, Tabs, Toolbar, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../store";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const [value, setValue] = useState(undefined);
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   return (
@@ -26,6 +28,7 @@ const Header = () => {
             >
               <Tab LinkComponent={Link} to="/blogs" label="All Blogs" />
               <Tab LinkComponent={Link} to="/myBlogs" label="My Blogs" />
+              <Tab LinkComponent={Link} to="/blogs/add" label="Add new blog" />
             </Tabs>
           </Box>
         )}
@@ -54,6 +57,7 @@ const Header = () => {
           )}
           {isLoggedIn && (
             <Button
+              onClick={() => dispatch(authActions.logout())}
               LinkComponent={Link}
               to="/auth"
               variant="contained"
