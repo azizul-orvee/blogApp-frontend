@@ -9,6 +9,12 @@ const Header = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState(undefined);
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
+
+  const handleLogOut = () => {
+    dispatch(authActions.logout());
+    localStorage.removeItem("userId");
+  };
+
   return (
     <AppBar
       position="sticky"
@@ -18,7 +24,9 @@ const Header = () => {
       }}
     >
       <Toolbar>
-        <Typography variant="h4">BlogsApp</Typography>
+        <Typography variant="h4">
+          BlogsApp
+        </Typography>
         {isLoggedIn && (
           <Box display="flex" marginLeft={"auto"} marginRight={"auto"}>
             <Tabs
@@ -57,7 +65,7 @@ const Header = () => {
           )}
           {isLoggedIn && (
             <Button
-              onClick={() => dispatch(authActions.logout())}
+              onClick={() => handleLogOut()}
               LinkComponent={Link}
               to="/auth"
               variant="contained"

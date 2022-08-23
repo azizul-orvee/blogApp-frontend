@@ -16,7 +16,7 @@ function App() {
     dispatch(authActions.login());
   }
 
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  // const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
   return (
     <React.Fragment>

@@ -3,11 +3,15 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea } from "@mui/material";
+import { Button, CardActionArea, Icon, IconButton } from "@mui/material";
+import { Box } from "@mui/system";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
-const Blog = ({blog, name}) => {
+const Blog = ({ blog, isUser }) => {
   const { title, description, image } = blog;
-  const user = blog?.user?.name || 'You'
+  const user = blog?.user?.name || "You";
+  console.log(title, isUser)
   return (
     <Card
       sx={{
@@ -20,7 +24,12 @@ const Blog = ({blog, name}) => {
           boxShadow: "10px 10px 20px #ccc",
         },
       }}
-    >
+    > {isUser && (
+      <Box display='flex'>
+        <IconButton sx={{marginLeft:'auto'}}><DeleteIcon /></IconButton>
+        <IconButton><EditIcon /></IconButton>
+      </Box>
+    )}
       <CardActionArea>
         <CardMedia
           component="img"
